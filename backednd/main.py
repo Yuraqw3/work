@@ -1,10 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from schemas import CreateUser
 from db import SessionLocal
-
+from schemas import CreateUser, UserInDB
+from crud import *
+ 
 app = FastAPI()
-
-@app.post("create_user")
 
 def get_db():
     db = SessionLocal()
@@ -12,4 +12,8 @@ def get_db():
         yield db
     finally:
         db.close()
+
+@app.post("/create_user", response_model=UserInDB)
+def create_user(user:CreateUser, db = Depends(get_db)):
+    pass 
 
