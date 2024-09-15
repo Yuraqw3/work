@@ -3,7 +3,7 @@ from schemas import CreateUser
 from db import SessionLocal
 from schemas import CreateUser, UserInDB
 from crud import *
- 
+
 app = FastAPI()
 
 def get_db():
